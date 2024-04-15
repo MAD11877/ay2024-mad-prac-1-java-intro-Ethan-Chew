@@ -1,3 +1,6 @@
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Scanner;
 
 public class Question5
@@ -27,6 +30,32 @@ public class Question5
      */
      
     Scanner in = new Scanner(System.in);
+    int total = in.nextInt();
+    int[] vals = new int[total];
     
+    for (int i = 0; i < total; i++) {
+      vals[i] = in.nextInt();
+    }
+
+    HashMap<Integer, Integer> valDictionary = new HashMap();
+    for (int i = 0; i < total; i++) {
+      if (valDictionary.containsKey(vals[i])) {
+        valDictionary.put(vals[i], valDictionary.get(vals[i]) + 1);
+      } else {
+        valDictionary.put(vals[i], 1);
+      }
+    }
+
+    int maxCount = 0;
+    for (int count : valDictionary.values()) {
+        maxCount = Math.max(maxCount, count);
+    }
+
+    for (int i = 0; i < total; i++) {
+      if (valDictionary.get(vals[i]) == maxCount) {
+        System.out.println(vals[i]);
+        break;
+      }
+    }
   }
 }
